@@ -9,9 +9,6 @@ IMPORTERS = [
 
 IMPORTER_NAMES = [
     'DKB Giro',
-    'DKB Visa',
-    'PC MasterCard',
-    'Volksbank',
 ]
 
 try:
