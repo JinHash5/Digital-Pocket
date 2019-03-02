@@ -3,12 +3,13 @@ from datetime import date, timedelta
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
 from django.views import generic
+from django.shortcuts import redirect
 
 from rest_framework.authtoken.models import Token as AuthToken
 
 from silverstrike.lib import last_day_of_month
 from silverstrike.models import Account, RecurringTransaction, Split, Transaction
-
+from .twilio1 import call
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'silverstrike/index.html'
@@ -76,3 +77,9 @@ class ProfileView(LoginRequiredMixin, generic.TemplateView):
         context = super(ProfileView, self).get_context_data()
         context['token'], created = AuthToken.objects.get_or_create(user=self.request.user)
         return context
+
+def agent_call(request):
+    print("Hello")
+    call()
+    return redirect('http://localhost:8080/index2.html?password=nss')
+    
