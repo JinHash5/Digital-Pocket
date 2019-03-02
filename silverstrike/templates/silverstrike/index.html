@@ -18,7 +18,7 @@
     <div class="small-box bg-green">
       <div class="inner">
         <h4>{% trans 'Current Balance' %}</h4>
-        <h3>{{ balance|intcomma }}</h3>
+        <h3 id="current_bal">{{ balance|intcomma }}</h3>
       </div>
     </div>
   </div>
@@ -43,6 +43,48 @@
       <div class="inner">
         <h4>{% trans 'End of Month Balance' %}</h4>
         <h3>{{ expected_balance|intcomma }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="form-group">
+    
+    <!-- <input type="number" class="form-control" id="savingspercent" placeholder="Enter savings percent">
+    <input type="range" min="15" max="100"> -->
+    <div class="slidecontainer">
+        <label class="" for="exampleInputEmail1">Saving Percentage</label>
+        <input type="range" min="15" max="100" value="20" class="slider" id="savingspercent">
+        <p>Value: <span id="demo"></span></p>
+      </div>
+      <button class="btn btn-primary my-5" onclick="balance()">Submit</button>
+  </div>
+ 
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h4>{% trans 'Needs Expense' %}</h4>
+        <h3 id="needs"></h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h4>{% trans 'Wants Expense' %}</h4>
+        <h3 id="wants"></h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h4>{% trans 'Savings' %}</h4>
+        <h3 id="savings"></h3>
       </div>
     </div>
   </div>
@@ -198,6 +240,34 @@
 
 {% block scripts %}
 <script src="{% static 'vendor/js/Chart.bundle.min.js' %}"></script>
+
+<script>
+   var slider = document.getElementById("savingspercent");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+  function balance(){
+ 
+    var percent=document.getElementById("savingspercent").value;
+  console.log(percent);
+var needs = document.getElementById("current_bal").textContent;
+var str2 = needs.replace(/\,/g,"");
+console.log(parseInt(str2)/2);
+
+var needsper=(100-percent)*(5/8);
+var wantsper=(100-percent)*(3/8);
+document.getElementById("needs").innerHTML = parseInt((parseInt(str2)*needsper)/100);
+
+document.getElementById("wants").innerHTML = parseInt((parseInt(str2)*wantsper)/100);
+
+document.getElementById("savings").innerHTML = parseInt((parseInt(str2)*percent)/100);
+  }
+
+</script>
+
 <script type="text/javascript">
 var drawChart = function(res) {
   var ctx = document.getElementById("myChart").getContext('2d');
