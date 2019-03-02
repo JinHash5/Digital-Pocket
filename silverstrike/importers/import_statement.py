@@ -2,6 +2,7 @@ class ImportStatement(object):
     account = ''
     book_date = ''
     transaction_date = ''
+    title = ''
     amount = 0
     notes = ''
     iban = ''

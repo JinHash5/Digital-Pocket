@@ -18,6 +18,7 @@ def import_transactions(csv_path):
                     transaction_date=datetime.datetime.strptime(line[0], '%d.%m.%Y').date(),
                     account=line[3],
                     notes=line[4],
+                    title = line[6],
                     iban=line[5],
                     amount=float(line[7].replace('.', '').replace(',', '.'))
 
