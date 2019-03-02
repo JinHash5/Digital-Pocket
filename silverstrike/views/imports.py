@@ -22,6 +22,8 @@ class ImportUploadView(LoginRequiredMixin, generic.edit.CreateView):
     def form_valid(self, form):
         self.object = form.save()
         account = form.cleaned_data['account']
+        self.request.session['account'] = account.name
+        print(account)
         importer = form.cleaned_data['importer']
         print(importer)
         return HttpResponseRedirect(
@@ -38,15 +40,18 @@ class ImportProcessView(LoginRequiredMixin, generic.TemplateView):
         context['data'] = importers.IMPORTERS[importer].import_transactions(file.file.path)
         context['recurrences'] = models.RecurringTransaction.objects.exclude(
             interval=models.RecurringTransaction.DISABLED).order_by('title')
+        # print(context)
+        context['account'] = self.request.session['account']
         return context
 
     def post(self, request, *args, **kwargs):
         file = models.ImportFile.objects.get(uuid=self.kwargs['uuid'])
         importer = self.kwargs['importer']
         data = importers.IMPORTERS[importer].import_transactions(file.file.path)
+        print(data)
         for i in range(len(data)):
-            title = request.POST.get('title-{}'.format(i), '')
-            account = request.POST.get('account-{}'.format(i), '')
+            title = data[i].title
+            account = request.session['account']
             recurrence = int(request.POST.get('recurrence-{}'.format(i), '-1'))
             book_date = data[i].book_date
             date = data[i].transaction_date
@@ -76,22 +81,23 @@ class ImportProcessView(LoginRequiredMixin, generic.TemplateView):
             if recurrence > 0:
                 transaction.recurrence_id = recurrence
             transaction.save()
+            print(transaction.title)
 
             models.Split.objects.create(
                 title=title,
                 amount=amount,
                 date=book_date,
                 transaction=transaction,
-                account_id=self.kwargs['account'],
-                opposing_account=account
+                account_id=(models.Account.objects.get(name = data[i].account)).id,
+                opposing_account=models.Account.objects.get(id = self.kwargs['account']),
                 )
             models.Split.objects.create(
                 title=title,
                 amount=-amount,
                 date=date,
                 transaction=transaction,
-                account=account,
-                opposing_account_id=self.kwargs['account']
+                account= account,
+                opposing_account_id=(models.Account.objects.get(name = data[i].account)).id,
                 )
         return HttpResponseRedirect('/')
 

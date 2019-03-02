@@ -2,6 +2,7 @@ class ImportStatement(object):
     account = ''
     book_date = ''
     transaction_date = ''
+    title = ''
     amount = 0
     notes = ''
     iban = ''
@@ -10,3 +11,5 @@ class ImportStatement(object):
         for name, value in kwargs.items():
             setattr(self, name, value)
         self.transaction_date = self.transaction_date or self.book_date
+        # print("!!!!!!!!!!!!")
+        # print(ImportStatement.account)
