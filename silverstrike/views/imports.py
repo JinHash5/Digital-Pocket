@@ -38,12 +38,14 @@ class ImportProcessView(LoginRequiredMixin, generic.TemplateView):
         context['data'] = importers.IMPORTERS[importer].import_transactions(file.file.path)
         context['recurrences'] = models.RecurringTransaction.objects.exclude(
             interval=models.RecurringTransaction.DISABLED).order_by('title')
+        # print(context)
         return context
 
     def post(self, request, *args, **kwargs):
         file = models.ImportFile.objects.get(uuid=self.kwargs['uuid'])
         importer = self.kwargs['importer']
         data = importers.IMPORTERS[importer].import_transactions(file.file.path)
+        print(data)
         for i in range(len(data)):
             title = request.POST.get('title-{}'.format(i), '')
             account = request.POST.get('account-{}'.format(i), '')

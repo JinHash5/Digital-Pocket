@@ -7,7 +7,9 @@ from silverstrike.importers.import_statement import ImportStatement
 def import_transactions(csv_path):
     lines = []
     with open(csv_path, encoding='latin-1') as csv_file:
-        for line in csv.reader(csv_file, delimiter=';'):
+        for line in csv.reader(csv_file, delimiter=','):
+            print(line)
+            # print(len(line))
             if len(line) < 5:
                 continue
             try:
@@ -18,8 +20,16 @@ def import_transactions(csv_path):
                     notes=line[4],
                     iban=line[5],
                     amount=float(line[7].replace('.', '').replace(',', '.'))
-                    ))
-            except ValueError:
+
+                    
+                    )
+                    
+                    )
+                # print("Lines")
+                # print(lines)
+            except Exception as e:
                 # first line contains headers
+                print("---")
+                print(e)
                 pass
     return lines

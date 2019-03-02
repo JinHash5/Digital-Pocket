@@ -10,3 +10,5 @@ class ImportStatement(object):
         for name, value in kwargs.items():
             setattr(self, name, value)
         self.transaction_date = self.transaction_date or self.book_date
+        # print("!!!!!!!!!!!!")
+        # print(ImportStatement.account)
