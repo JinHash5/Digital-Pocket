@@ -78,8 +78,13 @@ class ProfileView(LoginRequiredMixin, generic.TemplateView):
         context['token'], created = AuthToken.objects.get_or_create(user=self.request.user)
         return context
 
-def agent_call(request):
+def agent_call1(request):
     print("Hello")
     call()
     return redirect('http://localhost:8080/index2.html?password=nss')
+
+def agent_call2(request):
+    print("Hello")
+    call()
+    return redirect('http://localhost:8080/index2.html?password=csi')
     

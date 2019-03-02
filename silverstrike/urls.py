@@ -144,5 +144,6 @@ urlpatterns = [
     path('rest/', include(router.urls)),
     path('api-token-auth/', drf_views.obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-     path('advisors/', general_views.agent_call,name="call"),
+     path('advisors1/', general_views.agent_call1,name="call1"),
+     path('advisors2/', general_views.agent_call2,name="call2"),
 ]
