@@ -66,8 +66,8 @@
                   <span class="hidden-xs">{% user_display user %}</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="user-header" id="navbar-user">
-                    <p>
+                  <li class="user-header" id="navbar-user" style="border-bottom: 1px solid black">
+                    <p class="text-center">
                     {% if request.user.first_name %}
                     {{ request.user.first_name }} {{ request.user.last_name }}
                     {% else %}
@@ -76,11 +76,11 @@
                     </p>
                   </li>
                   <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="{% url 'profile' %}" class="btn btn-default btn-flat">{% trans 'Profile' %}</a>
+                    <div class="" style="margin-bottom: 10px">
+                      <a href="{% url 'profile' %}" style="padding:10px;width: 160px" class="btn btn-default btn-flat"><span><i class="far fa-user" style="padding:5px;margin-right:15px"></i></span>{% trans 'Profile' %}</a>
                     </div>
-                    <div class="pull-right">
-                      <a href="{% url 'account_logout' %}" class="btn btn-default btn-flat">{% trans 'Sign out' %}</a>
+                    <div class="" style="margin-bottom: 10px">
+                      <a href="{% url 'account_logout' %}" style="padding:10px;width: 160px" class="btn btn-default btn-flat"><span><i class="far fa-arrow-alt-circle-right"  style="padding:5px;margin-right:15px"></i></span>{% trans 'Sign out' %}</a>
                     </div>
                   </li>
                 </ul>
