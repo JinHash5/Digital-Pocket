@@ -15,32 +15,37 @@
 {% block content %}
 <div class="row">
   <div class="col-md-3">
-    <div class="small-box bg-green">
+    <div class="small-box bg-green text-center">
       <div class="inner">
+        <span><i class="fas fa-briefcase" style="font-size:30px"></i></span>
         <h4>{% trans 'Current Balance' %}</h4>
         <h3 id="current_bal">{{ balance|intcomma }}</h3>
       </div>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="small-box bg-yellow">
+    <div class="small-box bg-yellow  text-center">
       <div class="inner">
+        <span><i class="fas fa-rupee-sign" style="font-size:30px" ></i></span>
+
         <h4>{% trans 'Working Balance' %}</h4>
         <h3>{{ working_balance|intcomma }}</h3>
       </div>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="small-box bg-red">
+    <div class="small-box bg-red  text-center">
       <div class="inner">
+          <span><i class="fas fa-arrow-alt-circle-right" style="font-size:30px"></i></span>
         <h4>{% trans 'Outstanding Recurrences' %}</h4>
         <h3>{{ outstanding|intcomma }}</h3>
       </div>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="small-box bg-blue">
+    <div class="small-box bg-blue  text-center">
       <div class="inner">
+        <span><i class="fas fa-hourglass-end" style="font-size:30px"></i></span>
         <h4>{% trans 'End of Month Balance' %}</h4>
         <h3>{{ expected_balance|intcomma }}</h3>
       </div>
@@ -50,22 +55,22 @@
 
 
 
-  <div class="form-group">
+  <div class="form-group" style="margin-top: 10px;margin-bottom:10px">
     
     <!-- <input type="number" class="form-control" id="savingspercent" placeholder="Enter savings percent">
     <input type="range" min="15" max="100"> -->
     <div class="slidecontainer">
-        <label class="" for="exampleInputEmail1">Saving Percentage</label>
-        <input type="range" min="15" max="100" value="20" class="slider" id="savingspercent">
-        <p>Value: <span id="demo"></span></p>
+        <label class="" for="exampleInputEmail1" style="margin-bottom:20px">Saving Percentage</label>
+        <input type="range" min="15" max="100" value="20" class="slider" id="savingspercent" style="margin-bottom:20px">
+        <p style="margin-bottom:10px">Value: <span id="demo"></span></p>
       </div>
-      <button class="btn btn-primary my-5" onclick="balance()">Submit</button>
+      <button class="btn btn-primary my-5" onclick="balance()" style="margin-bottom:10px;background-color: #0073b7!important">Submit</button>
   </div>
  
 
 <div class="row">
   <div class="col-md-4">
-    <div class="small-box bg-green">
+    <div class="small-box bg-green text-center">
       <div class="inner">
         <h4>{% trans 'Needs Expense' %}</h4>
         <h3 id="needs"></h3>
@@ -73,7 +78,7 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="small-box bg-yellow">
+    <div class="small-box bg-yellow text-center">
       <div class="inner">
         <h4>{% trans 'Wants Expense' %}</h4>
         <h3 id="wants"></h3>
@@ -81,7 +86,7 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="small-box bg-red">
+    <div class="small-box bg-red text-center">
       <div class="inner">
         <h4>{% trans 'Savings' %}</h4>
         <h3 id="savings"></h3>
