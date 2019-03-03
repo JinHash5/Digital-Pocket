@@ -41,7 +41,7 @@
             <ul class="nav navbar-nav">
             
               
-              
+             <li class="header"><a href="http://localhost:3000/">ChatBot</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Talk To Your Advisor' %}</a>
                 <ul class="dropdown-menu">
@@ -115,7 +115,7 @@
             </li>
             <li class="{% if menu == "transactions" %}active{% endif %}">
               <a href="{% url 'transactions' %}">
-                <i class="fa fa-exchange fa-fw"></i>
+                <i class="fas fa-exchange-alt"></i>
                 <span>{% trans 'Transactions' %}</span>
               </a>
             </li>
@@ -149,7 +149,7 @@
               </a>
             <li class="treeview{% if menu == "settings" %} active{% endif %}">
               <a href="#">
-                <i class="fa fa-file-o fa-fw"></i>
+                <i class="fas fa-file-import"></i>
                 <span>{% trans 'Import &amp; Export' %}</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
