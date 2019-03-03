@@ -41,7 +41,7 @@ def call2():
 
     message = client.messages \
                     .create(
-                        body="The user wants to call",
+                        body="The user is requesting a call",
                         from_='+14156896062',
                         to='+918879490461'
                     )
