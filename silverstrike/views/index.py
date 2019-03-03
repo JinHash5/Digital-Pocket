@@ -9,7 +9,9 @@ from rest_framework.authtoken.models import Token as AuthToken
 
 from silverstrike.lib import last_day_of_month
 from silverstrike.models import Account, RecurringTransaction, Split, Transaction
-from .twilio1 import call
+from .twilio1 import call1
+from .twilio1 import call2
+
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'silverstrike/index.html'
@@ -80,11 +82,11 @@ class ProfileView(LoginRequiredMixin, generic.TemplateView):
 
 def agent_call1(request):
     print("Hello")
-    call()
+    call1()
     return redirect('http://localhost:8080/index2.html?password=nss')
 
 def agent_call2(request):
-    print("Hello")
-    call()
+    print("Hello csi")
+    call2()
     return redirect('http://localhost:8080/index2.html?password=csi')
     
